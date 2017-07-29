@@ -22,7 +22,7 @@ public class BookSearchApp {
 		String existA = null;
 		int choice = 0;
 		
-		// adding all books to the database
+		// adding the 6 books to the database
 		Book Book1= new Book();
 		Book1.setSku("Java1001");
 		Book1.setTitle("Head First Java");
@@ -74,10 +74,10 @@ public class BookSearchApp {
 		arr.add(Book5);
 		arr.add(Book6);
 		
-		
+		// continue when the user does not choose to quit
 		do {
 		//display the menu
-		System.out.println("\n===Menu===");
+		System.out.println("\n\n===Menu===");
 		System.out.println("1.Display the all books in database");
 		System.out.println("2.Add a new entry to the database");
 		System.out.println("3.Search a book by SKU");
@@ -88,18 +88,23 @@ public class BookSearchApp {
 		Scanner scop = new Scanner(System.in); 
 		choice=scop.nextInt();
 
-		
+		// To display all book in the database
 	    if (choice==1) {
-	    	
+	    	System.out.println("");
+	    	System.out.println("----------------------------------------------------------------------------------------"+
+	    			"---------------------------------------------------------------------------------------------------");
+	    	System.out.printf("\n"+"%6s%26s%40s%36s%52s","SKU", "Title", "Author", "Description", "Price");
+	    	System.out.println("\n--------------------------------------------------------------------------------------"+
+	    			"---------------------------------------------------------------------------------------------------");
 		//Enhanced loop over the ArrayList arr and display the book database
 		for (Book item: arr) {
-				System.out.printf("\n"+"%-12s%-45s%-30s%-45s%-3f", item.getSku(), item.getTitle(), 
+				System.out.printf("\n"+"%-12s%-45s%-30s%-69s%-10s", item.getSku(), item.getTitle(), 
 						item.getAuthor(), item.getDescription(),
 						item.getPrice());
 			}	   	
 	    }
 		
-	    
+	    // Allow the user to create a book entry, and add all information of the book
 	    if (choice==2) {
 		
 	    	do{
@@ -155,25 +160,26 @@ public class BookSearchApp {
 	    }
 		
 		
+	    //look up a book by SKU, loop through the ArrayList, if no match, print the book is not in the database
 	    if (choice ==3) {
 		System.out.println("Please enter the book SKU for searching.");
 		Scanner scan01 = new Scanner(System.in);
 		String searchSKU= scan01.nextLine(); 
 		
-		int i =0; 
+		int counterS =0; 
 		
-		while ( exist!="yes"&& i<arr.size()){
+		while (exist!="yes"&& counterS<arr.size()){
 			
 			exist=null;
 			
-			if (searchSKU.equalsIgnoreCase(arr.get(i).getSku())){
-				System.out.printf("%-12s%-25s%-15s%-30s%-6f", arr.get(i).getSku(), arr.get(i).getTitle(), 
-					     arr.get(i).getAuthor(),arr.get(i).getDescription(),
-						 arr.get(i).getPrice());
+			if (searchSKU.equalsIgnoreCase(arr.get(counterS).getSku())){
+				System.out.println("SKU: " + arr.get(counterS).getSku() + "    " + "Title: " + arr.get(counterS).getTitle() + "    "+ 
+					     "Author: " + arr.get(counterS).getAuthor() + "    " + "Description" + arr.get(counterS).getDescription() +
+						 "    " + "Price: $" + arr.get(counterS).getPrice());
 				
 				exist = "yes";
 			}
-			i ++; 
+			counterS ++; 
 		}
 
 			
@@ -183,26 +189,29 @@ public class BookSearchApp {
 		
 	    }
 	    
+	    
+	    
+	    //look up a book by SKU, loop through the Author, if no match, print the book is not in the database
 	    if (choice==4) {
 			
 		System.out.println("Please enter the author for searching.");
 		Scanner scan02 = new Scanner(System.in);
 		String searchAuthor= scan02.nextLine(); 
 		
-		int j =0; 
+		int counterA =0; 
 		
-		while ( existA!="yes"&& j<arr.size()){
+		while ( existA!="yes"&& counterA<arr.size()){
 			
 			existA=null;
 			
-			if (arr.get(j).getAuthor().contains(searchAuthor)){
-				System.out.println(arr.get(j).getSku() + "    " + arr.get(j).getTitle() + 
-						"    " + arr.get(j).getAuthor() + "    "+ arr.get(j).getDescription() + 
-						"    " + arr.get(j).getPrice());
+			if (arr.get(counterA).getAuthor().contains(searchAuthor)){
+				System.out.println( "SKU: " + arr.get(counterA).getSku() + "    " + "Title: " + arr.get(counterA).getTitle() + "    "+ 
+					     "Author: " + arr.get(counterA).getAuthor() + "    " + "Description" + arr.get(counterA).getDescription() +
+						 "    " + "Price: $" + arr.get(counterA).getPrice());
 				
 				existA = "yes";
 			}
-			j ++; 
+			counterA ++; 
 		}
 			
 		if (existA!="yes"){

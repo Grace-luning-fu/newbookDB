@@ -9,6 +9,7 @@ public class Book {
 	private String title;
 	private String author;
 	private String description;
+	private String category;
 	private double price; 
 	
     // method of set and get SKU
@@ -51,8 +52,17 @@ public class Book {
     	return description;
     	
     }
+ 
+    // method of set and get category
+    public void setCategory (String category){
+    	this.category = category;
+    }
     
-    
+    public String getCategory(){
+    	return category;
+    	
+    }
+ 
     // method of set and get price
     public void setPrice(double price){
     	this.price=price;
