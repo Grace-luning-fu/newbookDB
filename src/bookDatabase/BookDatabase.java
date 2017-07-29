@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class BookDatabase {
 	// adding all books to the database
 	
-	public ArrayList<Book> setdatabase(){
+	public ArrayList<Book> initDatabase(){
+	
 	ArrayList<Book> arrbook = new ArrayList<Book>();
 	
 	Book Book1= new Book();

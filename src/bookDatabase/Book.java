@@ -1,5 +1,7 @@
 package bookDatabase;
 
+import java.util.ArrayList;
+
 public class Book {
 
 	// Initiate private variable name and price 
@@ -62,8 +64,6 @@ public class Book {
     	
     }
     
-	
-
-
 }
+    
 
