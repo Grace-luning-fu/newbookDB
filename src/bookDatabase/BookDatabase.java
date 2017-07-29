@@ -3,9 +3,14 @@ package bookDatabase;
 import java.util.ArrayList;
 
 public class BookDatabase {
-	// adding all books to the database
 
 	public ArrayList<Book> initDatabase() {
+
+		/*
+		 * Test (Work in progress): This is a method for adding existing books into book
+		 * database, which will be used in the main method in another class
+		 * 
+		 **/
 
 		ArrayList<Book> arrbook = new ArrayList<Book>();
 
