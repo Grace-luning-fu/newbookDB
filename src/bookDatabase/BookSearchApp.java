@@ -17,12 +17,12 @@ public class BookSearchApp {
 		 **/
 		String contin = null;
 		ArrayList<Book> arr = new ArrayList<Book>();
-		String exist = null;
 		String existA = null;
 		int choice = 0;
 
 		// Initialize the book database by adding the 6 books into the book ArrayList
-		arr = initDatabase();
+		BookDatabase db = new BookDatabase();
+		arr = db.initDatabase();
 
 		// do the following at least once, continue when the user does not choose 5.quit
 		do {
@@ -35,8 +35,8 @@ public class BookSearchApp {
 			System.out.println("5.Quit");
 
 			System.out.println("Please choose from option 1 to 5:");
-			Scanner scop = new Scanner(System.in);
-			choice = scop.nextInt();
+			Scanner sc = new Scanner(System.in);
+			choice = sc.nextInt();
 
 			// To display all book in the database
 			// including the 6 books originally in the database and the ones you will add
@@ -67,43 +67,44 @@ public class BookSearchApp {
 
 					// Prompt user input for SKU
 					System.out.println("Input a SKU of the book:");
-					Scanner scSKU = new Scanner(System.in);
 
-					String SKU = scSKU.nextLine();
+					sc.next();
+					String SKU = sc.nextLine();
 					onebook.setSku(SKU);
 
 					// Prompt user input for title
 					System.out.println("Input a Title of the book:");
-					Scanner sctitle = new Scanner(System.in);
 
-					String title = sctitle.nextLine();
+					sc.next();
+					String title = sc.nextLine();
 					onebook.setTitle(title);
 
 					// Prompt user input for an author
 					System.out.println("Input the author of the book:");
-					Scanner scauthor = new Scanner(System.in);
 
-					String author = scauthor.nextLine();
+					sc.next();
+					String author = sc.nextLine();
 					onebook.setAuthor(author);
 
 					// Prompt user input for description
 					System.out.println("Input the description of the book:");
-					Scanner scde = new Scanner(System.in);
 
-					String des = scde.nextLine();
+					sc.next();
+					String des = sc.nextLine();
 					onebook.setDescription(des);
 
 					// Prompt user input for price
 					System.out.println("Input the price of the book:");
-					Scanner scpri = new Scanner(System.in);
 
-					Double price = scpri.nextDouble();
+
+					sc.next();
+					Double price = sc.nextDouble();
 					onebook.setPrice(price);
 
 					// prompt for choice of continue or not
 					System.out.println("Would you like to add another book? y/n");
-					Scanner scan00 = new Scanner(System.in);
-					contin = scan00.nextLine();
+					sc.next();
+					contin = sc.nextLine();
 
 					// add this item in to the ArrayList
 					arr.add(onebook);
@@ -116,30 +117,10 @@ public class BookSearchApp {
 			// book is not in the database
 			if (choice == 3) {
 				System.out.println("Please enter the book SKU for searching.");
-				Scanner scan01 = new Scanner(System.in);
-				String searchSKU = scan01.nextLine();
+				sc.next();
+				String searchSKU = sc.nextLine();
 
-				int counterS = 0;
-
-				while (exist != "yes" && counterS < arr.size()) {
-
-					exist = null;
-
-					if (searchSKU.equalsIgnoreCase(arr.get(counterS).getSku())) {
-						System.out.println("SKU: " + arr.get(counterS).getSku() + "    " + "Title: "
-								+ arr.get(counterS).getTitle() + "    " + "Author: " + arr.get(counterS).getAuthor()
-								+ "    " + "Description" + arr.get(counterS).getDescription() + "    " + "Price: $"
-								+ arr.get(counterS).getPrice());
-
-						exist = "yes";
-					}
-					counterS++;
-				}
-
-				if (exist != "yes") {
-					System.out.println("The book with this SKU is not in the database.");
-				}
-
+				searchBySku(arr, searchSKU);
 			}
 
 			// look up a book by SKU, loop through the Author, if no match, print the book
@@ -147,8 +128,8 @@ public class BookSearchApp {
 			if (choice == 4) {
 
 				System.out.println("Please enter the author for searching.");
-				Scanner scan02 = new Scanner(System.in);
-				String searchAuthor = scan02.nextLine();
+				sc.next();
+				String searchAuthor = sc.nextLine();
 
 				int counterA = 0;
 
@@ -178,10 +159,43 @@ public class BookSearchApp {
 		System.out.println("\n\nThank you for using this App!");
 
 	}
+	
+	public static ArrayList<Book> searchBySku(ArrayList<Book> arr, String SKU){
+		
+		int counterS = 0;
+		
+		String exist = null; 
+		
+		while (exist != "yes" && counterS < arr.size()) {
 
+				if (SKU.equalsIgnoreCase(arr.get(counterS).getSku())) {
+					System.out.println("SKU: " + arr.get(counterS).getSku() + "    " + "Title: "
+							+ arr.get(counterS).getTitle() + "    " + "Author: " + arr.get(counterS).getAuthor()
+							+ "    " + "Description" + arr.get(counterS).getDescription() + "    " + "Price: $"
+							+ arr.get(counterS).getPrice());
+					exist = "yes";
+
+				}
+				counterS++;
+				}
+		
+		
+		if (exist != "yes") {
+			System.out.println("The book with this SKU is not in the database.");
+			
+
+		} return new ArrayList<Book>();
+	
+			
+	
+	}	
+	
+}
+
+/**
 	// This is a test example: a method for adding existing books into book database
 	// This method is used in Main method
-	public static ArrayList<Book> initDatabase() {
+       public static ArrayList<Book> initDatabase() {
 
 		ArrayList<Book> arrbook = new ArrayList<Book>();
 
@@ -239,6 +253,7 @@ public class BookSearchApp {
 	}
 
 }
+*/
 
 
 /*

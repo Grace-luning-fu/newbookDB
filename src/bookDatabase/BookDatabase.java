@@ -65,5 +65,22 @@ public class BookDatabase {
 
 		return arrbook;
 	}
+	
+	public ArrayList<Book> searchBySku(ArrayList<Book> arr, String SKU){
+		int counterS = 0;
+
+			if (SKU.equalsIgnoreCase(arr.get(counterS).getSku())) {
+				System.out.println("SKU: " + arr.get(counterS).getSku() + "    " + "Title: "
+						+ arr.get(counterS).getTitle() + "    " + "Author: " + arr.get(counterS).getAuthor()
+						+ "    " + "Description" + arr.get(counterS).getDescription() + "    " + "Price: $"
+						+ arr.get(counterS).getPrice());
+
+			}
+			counterS++;
+	
+		
+		return new ArrayList<Book>(); 
+	}
+	
 
 }

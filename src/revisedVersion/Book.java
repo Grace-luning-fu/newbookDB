@@ -1,6 +1,4 @@
-package bookDatabase;
-
-import java.util.ArrayList;
+package revisedVersion;
 
 public class Book {
 
@@ -12,15 +10,6 @@ public class Book {
 	private String category;
 	private double price;
 
-	
-	public void set(String SKU, String title, String author,String description, double price){
-		setSku(SKU);
-		setTitle(title);
-		setAuthor(author);
-		setDescription(description);
-		setPrice(price);
-	}
-	
 	// method of set and get SKU
 	public void setSku(String SKU) {
 		this.SKU = SKU;
