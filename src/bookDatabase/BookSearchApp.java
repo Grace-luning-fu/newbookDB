@@ -31,10 +31,13 @@ public class BookSearchApp {
 			System.out.println("2.Add a new entry to the database");
 			System.out.println("3.Search a book by SKU");
 			System.out.println("4.Search a book by Author/co-Author");
-			System.out.println("5.Quit");
+			System.out.println("5.Search a book by Category");
+			System.out.println("6.Quit");
 
-			System.out.println("Please choose from option 1 to 5:");
+			System.out.println("Please choose from option 1 to 6:");
 			choice = sc.nextInt();
+			//to consume the newline
+			sc.nextLine();
 
 			// To display all book in the database
 			// including the 6 books originally in the database and the ones you will add
@@ -53,41 +56,43 @@ public class BookSearchApp {
 
 					// Prompt user input for SKU
 					System.out.println("Input a SKU of the book:");
-					sc.next();
 					String SKU = sc.nextLine();
 					onebook.setSku(SKU);
 
 					// Prompt user input for title
 					System.out.println("Input a Title of the book:");
 
-					sc.next();
 					String title = sc.nextLine();
 					onebook.setTitle(title);
 
 					// Prompt user input for an author
 					System.out.println("Input the author of the book:");
 
-					sc.next();
 					String author = sc.nextLine();
 					onebook.setAuthor(author);
 
 					// Prompt user input for description
 					System.out.println("Input the description of the book:");
 
-					sc.next();
 					String des = sc.nextLine();
 					onebook.setDescription(des);
 
 					// Prompt user input for price
 					System.out.println("Input the price of the book:");
 
-					sc.next();
 					Double price = sc.nextDouble();
+					//to consume the newline
+					sc.nextLine();
 					onebook.setPrice(price);
 
+					// Prompt user input for category
+					System.out.println("Input the category of the book:");
+
+					String category = sc.nextLine();
+					onebook.setCategory(category);
+					
 					// prompt for choice of continue or not
 					System.out.println("Would you like to add another book? y/n");
-					sc.next();
 					contin = sc.nextLine();
 
 					// add this item in to the ArrayList
@@ -101,25 +106,33 @@ public class BookSearchApp {
 			// book is not in the database
 			if (choice == 3) {
 				System.out.println("Please enter the book SKU for searching.");
-				sc.nextLine();
 				String searchSKU = sc.nextLine();
 				searchBySku(arr, searchSKU);
 
 			}
 
-			// look up a book by SKU, loop through the Author, if no match, print the book
+			// look up a book by author, loop through the ArrayList, if no match, print the book
 			// is not in the database
 			if (choice == 4) {
 
 				System.out.println("Please enter the author for searching.");
-				sc.nextLine();
 				String searchAuthor = sc.nextLine();
-
 				searchByAuthor(arr, searchAuthor);
 
 			}
+			
+			
+			// look up a book by Category, loop through the ArrayList, add all the matching books to a new ArrayList
+			// then display (assuming some categories have more than 1 book in the database)
+			if (choice == 5) {
 
-		} while (choice != 5);
+				System.out.println("Please enter the Category for searching.");
+				String searchCategory = sc.nextLine();
+				searchByCategory(arr, searchCategory);
+
+			}
+
+		} while (choice != 6);
 
 		System.out.println("\n\nThank you for using this App!");
 
@@ -164,6 +177,27 @@ public class BookSearchApp {
 
 	}
 
+	public static ArrayList<Book> searchByCategory(ArrayList<Book> arr, String Category) {
+
+		String existA = null;
+		ArrayList<Book> categoryBook = new ArrayList<Book>();
+
+		for (Book c : arr) {
+			if (c.getCategory()!=null&&c.getCategory().equalsIgnoreCase(Category)) {
+				existA = "yes";
+				categoryBook.add(c);	
+			}
+		}
+
+		if (existA == null) {
+			System.out.println("The book belongs to this Category does not exist in the database.");
+			return null;
+		} else{
+			displayArrbooks(categoryBook);
+			return categoryBook;
+		}
+
+	}
 	// This is a test example: a method for adding existing books into book database
 	// This method is used in Main method
 	public static ArrayList<Book> initDatabase() {

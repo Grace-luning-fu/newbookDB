@@ -2,7 +2,6 @@ package bookDatabase;
 
 import java.util.ArrayList;
 
-import revisedVersion.Book;
 
 public class BookDatabase {
 
