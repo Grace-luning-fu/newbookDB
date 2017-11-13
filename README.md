@@ -9,5 +9,5 @@ This is a library book database App, which allows user to:
 4. Look up a book by Category.
 
 This book database was developed in Eclipse, and it was connected to a local MySQL database. 
+Please note that this is a console output based program, a web-based program is working in progress. Coming up soon....
 
-Test result was shown at the end of the code in file "BookSearchApp.java". 
